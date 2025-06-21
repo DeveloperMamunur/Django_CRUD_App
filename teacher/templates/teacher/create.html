@@ -5,7 +5,7 @@
 
 {% block content %}
     <h1 class="text-center">Teacher Create Form</h1>
-    <a href="{% url 'student_index' %}" class="btn btn-primary my-3">Back</a>
+    <a href="{% url 'teacher_index' %}" class="btn btn-primary my-3">Back</a>
     <form method="POST" class="border p-5 rounded w-50 mx-auto" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
