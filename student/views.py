@@ -31,3 +31,9 @@ def student_edit(request, student_id):
     else:
         form = StudentForm(instance=student)
     return render(request, 'student/edit.html', {'form': form, 'student': student})
+
+def student_delete(request, student_id):
+    student = Student.objects.get(id=student_id)
+    student.delete()
+    messages.add_message(request, messages.ERROR, "Student deleted successfully")
+    return redirect('student_index')
