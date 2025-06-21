@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('', include('course.urls')),
     path('', include('student.urls')),
+    path('', include('teacher.urls')),
 ]
