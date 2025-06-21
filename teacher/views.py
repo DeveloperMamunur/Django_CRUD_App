@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import TeacherForm
 from django.contrib import messages 
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 from .models import Teacher
 from django.urls import reverse_lazy
 
@@ -23,3 +23,18 @@ class teacher_create(CreateView):
         return super().form_valid(form)
 
 
+class teacher_edit(UpdateView):
+    form_class = TeacherForm
+    model = Teacher
+    template_name = 'teacher/edit.html'
+    success_url = reverse_lazy('teacher_index')
+    pk_url_kwarg = 'teacher_id'
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.SUCCESS, "Teacher updated successfully")
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['edit'] = True
+        return context
