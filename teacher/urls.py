@@ -5,5 +5,6 @@ urlpatterns = [
     path('teacher/', views.teacher_index.as_view(), name='teacher_index'),
     path('teacher/create/', views.teacher_create.as_view(), name='teacher_create'),
     path('teacher/edit/<int:teacher_id>/', views.teacher_edit.as_view(), name='teacher_edit'),
+    path('teacher/delete/<int:teacher_id>/', views.teacher_delete.as_view(), name='teacher_delete'),
     
 ]

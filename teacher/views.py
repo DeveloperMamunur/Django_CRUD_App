@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import TeacherForm
 from django.contrib import messages 
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from .models import Teacher
 from django.urls import reverse_lazy
 
@@ -38,3 +38,14 @@ class teacher_edit(UpdateView):
         context = super().get_context_data(**kwargs)
         context['edit'] = True
         return context
+
+
+class teacher_delete(DeleteView):
+    model = Teacher
+    template_name = 'teacher/delete.html'
+    success_url = reverse_lazy('teacher_index')
+    pk_url_kwarg = 'teacher_id'
+
+    def delete(self, request, *args, **kwargs):
+        messages.add_message(self.request, messages.ERROR, "Teacher deleted successfully")
+        return super().delete(request, *args, **kwargs)
