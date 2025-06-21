@@ -34,7 +34,7 @@
                 </td>
                 <td>
                     <a href="{% url 'course_edit' course.id %}" class="btn btn-outline-warning me-2">Edit</a>
-                    <a href="" class="btn btn-outline-danger">Delete</a>
+                    <a href="{% url 'course_delete' course.id %}" class="btn btn-outline-danger">Delete</a>
                 </td>
             </tr>
             {% endfor %}

@@ -30,7 +30,13 @@ def course_edit(request, course_id):
 
         course = Course(name=name, course_code=course_code, credit=credit, price=price)
         course.save()
-        messages.add_message(request, messages.INFO, "Course updated successfully")
+        messages.add_message(request, messages.SUCCESS, "Course updated successfully")
         return redirect('course_index')
 
     return render(request, 'course/edit.html', {'course': course})
+
+def course_delete(request, course_id):
+    course = Course.objects.get(id=course_id)
+    course.delete()
+    messages.add_message(request, messages.ERROR, "Course deleted successfully")
+    return redirect('course_index')
