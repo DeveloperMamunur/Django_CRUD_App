@@ -20,3 +20,14 @@ def student_create(request):
         form = StudentForm()
     return render(request, 'student/create.html', {'form': form})
 
+def student_edit(request, student_id):
+    student = Student.objects.get(id=student_id)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, request.FILES, instance=student)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, "Student updated successfully")
+            return redirect('student_index')
+    else:
+        form = StudentForm(instance=student)
+    return render(request, 'student/edit.html', {'form': form, 'student': student})
