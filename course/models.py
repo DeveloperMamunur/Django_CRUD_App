@@ -6,6 +6,7 @@ class Course(models.Model):
     course_code = models.CharField(max_length=10)
     credit = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    # duration = models.IntegerField()
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
