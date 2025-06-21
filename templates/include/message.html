@@ -1,0 +1,27 @@
+{% if messages %}
+    <div id="django-messages" class="container d-flex justify-content-end" style="position: relative">
+        {% for message in messages %}
+            <div class="alert {% if 'success' in message.tags %}alert-success
+                        {% elif 'info' in message.tags %}alert-info
+                        {% elif 'warning' in message.tags %}alert-warning
+                        {% elif 'error' in message.tags %}alert-danger
+                        {% else %}alert-secondary{% endif %}
+                        alert-dismissible fade show" role="alert" style="position: absolute; top: 0; right: 0;">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        // Auto-hide after 3 seconds
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500); // remove after fade
+            });
+        }, 3000);
+    </script>
+{% endif %}

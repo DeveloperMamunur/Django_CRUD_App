@@ -2,6 +2,10 @@
 
 {% block title %}course{% endblock title %}
 
+{% block message %}
+    {% include 'include/message.html' %}
+{% endblock message %}
+
 {% block content %}
     <h1 class="text-center">Course List</h1>
     <a href="{% url 'course_create' %}" class="btn btn-primary">Create Course</a>
@@ -29,8 +33,8 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a href="">Edit</a>
-                    <a href="">Delete</a>
+                    <a href="{% url 'course_edit' course.id %}" class="btn btn-outline-warning me-2">Edit</a>
+                    <a href="" class="btn btn-outline-danger">Delete</a>
                 </td>
             </tr>
             {% endfor %}
