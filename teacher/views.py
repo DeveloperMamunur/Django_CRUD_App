@@ -10,6 +10,11 @@ class teacher_index(ListView):
     model = Teacher
     template_name = 'teacher/index.html'
     context_object_name = 'teachers'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Teacher List'
+        return context
     
 
 
@@ -21,6 +26,11 @@ class teacher_create(CreateView):
     def from_valid(self, form):
         messages.add_message(self.request, messages.SUCCESS, "Teacher created successfully")
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Teacher Create'
+        return context
 
 
 class teacher_edit(UpdateView):
@@ -37,6 +47,7 @@ class teacher_edit(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['edit'] = True
+        context['page_title'] = 'Teacher Edit'
         return context
 
 
